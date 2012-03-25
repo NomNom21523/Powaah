@@ -9,7 +9,7 @@ CurveAgent::~CurveAgent()
 
 }
 
-void CurveAgent::update()
+void CurveAgent::update(CarState &carState, const float dt)
 {
 
 }

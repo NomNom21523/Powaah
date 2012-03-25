@@ -9,7 +9,7 @@ public:
     TrackAgent();
     ~TrackAgent();
 
-    void update();
+    void update(CarState &carState, const float dt);
     void setAgentOptions(std::vector<AgentOption> &options);
 
 private:

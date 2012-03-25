@@ -22,7 +22,8 @@ SOURCES += \
     SimpleParser.cpp \
     WrapperBaseDriver.cpp \
     client.cpp \
-    PowaahDriver.cpp
+    PowaahDriver.cpp \
+    Charge.cpp
 
 HEADERS += \
     Agent.h \
@@ -40,5 +41,6 @@ HEADERS += \
     SimpleDriver.h \
     SimpleParser.h \
     WrapperBaseDriver.h \
-    PowaahDriver.h
+    PowaahDriver.h \
+    Charge.h
 

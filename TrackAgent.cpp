@@ -9,7 +9,7 @@ TrackAgent::~TrackAgent()
 
 }
 
-void TrackAgent::update()
+void TrackAgent::update(CarState &carState, const float dt)
 {
 
 }

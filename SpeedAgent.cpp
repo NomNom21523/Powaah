@@ -10,14 +10,16 @@ SpeedAgent::~SpeedAgent()
 
 }
 
-void SpeedAgent::update()
+void SpeedAgent::update(CarState &carState, const float dt)
 {
 
 }
 
 void SpeedAgent::setAgentOptions(std::vector<AgentOption> &options)
 {
+    for (unsigned int i = 0; i < options.size(); i++) {
 
+    }
 }
 
 void SpeedAgent::setTargetSpeed(const float targetSpeed)

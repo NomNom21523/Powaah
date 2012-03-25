@@ -8,8 +8,3 @@ Agent::~Agent()
 {
 
 }
-
-void Agent::update()
-{
-
-}
