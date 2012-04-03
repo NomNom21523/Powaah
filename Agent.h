@@ -4,6 +4,8 @@
 #include <vector>
 #include "AgentOption.h"
 #include "CarState.h"
+#include "Charge.h"
+
 class Agent
 {
 public:

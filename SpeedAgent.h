@@ -17,7 +17,7 @@ public:
 
 private:
     float targetSpeed;
-
+    float angles[TRACK_SENSORS_NUM];
 };
 
 #endif // SPEEDAGENT_H
