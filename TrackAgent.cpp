@@ -14,7 +14,7 @@ void TrackAgent::update(CarState &carState, const float dt)
 
 }
 
-void TrackAgent::setAgentOptions(std::vector<AgentOption> &options)
+void TrackAgent::calculatePotentialToAgentOptions(std::vector<AgentOption> &options)
 {
 
 }

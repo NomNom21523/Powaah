@@ -14,7 +14,7 @@ void CurveAgent::update(CarState &carState, const float dt)
 
 }
 
-void CurveAgent::setAgentOptions(std::vector<AgentOption> &options)
+void CurveAgent::calculatePotentialToAgentOptions(std::vector<AgentOption> &options)
 {
 
 }

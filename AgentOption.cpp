@@ -59,6 +59,15 @@ const float AgentOption::getAcceleratorValue() const
     return this->accelerator_value;
 }
 
+void AgentOption::setBrakeValue(const float brakeValue)
+{
+    this->brakeValue = brakeValue;
+}
+
+const float AgentOption::getBrakeValue() const
+{
+    return this->brakeValue;
+}
 
 void AgentOption::setCurveAgentPotentialValue(const float curveAgentPotentialValue)
 {
