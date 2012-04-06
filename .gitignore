@@ -1,1 +1,5 @@
+# object files that are created when compiling
 *.o
+
+# qtcreator .user files
+*.user
