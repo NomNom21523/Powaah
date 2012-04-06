@@ -23,6 +23,9 @@ public:
     void setAcceleratorValue(const float accelerator_value);
     const float getAcceleratorValue() const;
 
+    void setBrakeValue(const float brakeValue);
+    const float getBrakeValue() const;
+
     void setCurveAgentPotentialValue(const float curveAgentPotentialValue);
     const float getCurveAgentPotentialValue() const;
 
@@ -37,10 +40,12 @@ private:
     Vector2 position;
     float potential_value;
     float accelerator_value;
+    float brakeValue;
     float curveAgentPotentialValue;
     float speedAgentPotentialValue;
     float trackAgentPotentialValue;
 
+    int counter;
 };
 
 #endif // AGENTOPTION_H

@@ -42,7 +42,7 @@ void SpeedAgent::update(CarState &carState, const float dt)
 
 }
 
-void SpeedAgent::setAgentOptions(std::vector<AgentOption> &options)
+void SpeedAgent::calculatePotentialToAgentOptions(std::vector<AgentOption> &options)
 {
     for (unsigned int i = 0; i < options.size(); i++) {
         AgentOption option = options[i];

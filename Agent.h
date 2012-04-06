@@ -14,7 +14,7 @@ public:
 
     virtual void update(CarState &carState, const float dt) = 0;
 
-    virtual void setAgentOptions(std::vector<AgentOption> &options) = 0 ;
+    virtual void calculatePotentialToAgentOptions(std::vector<AgentOption> &options) = 0 ;
 
 protected:
     std::vector<Charge> potentialField;

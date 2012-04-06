@@ -10,7 +10,7 @@ public:
     ~SpeedAgent();
 
     void update(CarState &carState, const float dt);
-    void setAgentOptions(std::vector<AgentOption> &options);
+    void calculatePotentialToAgentOptions(std::vector<AgentOption> &options);
 
     void setTargetSpeed(const float targetSpeed);
     const float getTargetSpeed() const;
