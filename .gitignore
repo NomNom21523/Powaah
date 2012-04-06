@@ -3,3 +3,6 @@
 
 # qtcreator .user files
 *.user
+
+# client executable file
+client
