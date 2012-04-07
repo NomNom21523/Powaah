@@ -1,6 +1,5 @@
 #include "PowaahDriver.h"
-
-
+#include "MathUtility.h"
 /* Gear Changing Constants*/
 const int PowaahDriver::gearUp[6]=
     {
@@ -73,10 +72,10 @@ PowaahDriver::getSteer(CarState &cs)
     // axis [cs.getAngle()] and to adjust car position w.r.t to middle of track [cs.getTrackPos()*0.5]
     float targetAngle=(cs.getAngle()-cs.getTrackPos()*0.5);
     // at high speed reduce the steering command to avoid loosing the control
-    if (cs.getSpeedX() > steerSensitivityOffset)
-        return targetAngle/(steerLock*(cs.getSpeedX()-steerSensitivityOffset)*wheelSensitivityCoeff);
-    else
-        return (targetAngle)/steerLock;
+    //if (cs.getSpeedX() > steerSensitivityOffset)
+    //    return -1*MathUtility::convertDegToRad(driver.getAgentOption().getAngle())/(steerLock*(cs.getSpeedX()-steerSensitivityOffset)*wheelSensitivityCoeff);
+    //else
+        return (-1*MathUtility::convertDegToRad(driver.getAgentOption().getAngle()))/steerLock;
 
 }
 float
@@ -172,6 +171,10 @@ PowaahDriver::wDrive(CarState cs)
 
     else // car is not stuck
     {
+        // testcode
+        driver.update(cs, 0.1f);
+        AgentOption option = driver.getAgentOption();
+
         // compute accel/brake command
         float accel_and_brake = getAccel(cs);
         // compute gear
@@ -204,6 +207,7 @@ PowaahDriver::wDrive(CarState cs)
         clutching(cs,clutch);
 
         // build a CarControl variable and return it
+        //CarControl cc(accel,brake,gear,steer,clutch);
         CarControl cc(accel,brake,gear,steer,clutch);
         return cc;
     }

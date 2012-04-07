@@ -25,7 +25,7 @@ Driver::Driver()
         {
             AgentOption option;
             option.setLength(0.0f);
-            option.setAngle(MathUtility::convertDegToRad(angle));
+            option.setAngle(angle);
             option.setAcceleratorValue(ab);
             agentOptions.push_back(option);
         }
@@ -35,8 +35,9 @@ Driver::Driver()
         {
             AgentOption option;
             option.setLength(0.0f);
-            option.setAngle(MathUtility::convertDegToRad(angle));
+            option.setAngle(angle);
             option.setBrakeValue(ab);
+            agentOptions.push_back(option);
         }
     }
 }
@@ -69,15 +70,22 @@ void Driver::update(CarState &carState, const float dt)
         resVelocity += currentAcceleration;
 
         agentOptions[i].setLength(((currentVelocity + resVelocity)*0.5f)*dt);
+
+        agentOptions[i].setPosition(MathUtility::calculatePosition(MathUtility::convertDegToRad(agentOptions[i].getAngle()), agentOptions[i].getLength()));
     }
 
     speedAgent.update(carState, dt);
+    speedAgent.calculatePotentialToAgentOptions(agentOptions);
 
 }
 
 
 const AgentOption Driver::getAgentOption() {
-    AgentOption option;
-
+    AgentOption &option = agentOptions[0];
+    for (unsigned int i = 1; i < agentOptions.size(); i++) {
+        if (agentOptions[i].getPotentialValue() > option.getPotentialValue()) {
+            option = agentOptions[i];
+        }
+    }
     return option;
 }

@@ -77,5 +77,5 @@ const float MathUtility::potentialSquareRoot(const float charge, const float len
 
 const Vector2 MathUtility::calculatePosition(const float angle, const float length)
 {
-        return Vector2(cosf(angle) * length, sinf(angle)*length);
+        return Vector2(cos(angle) * length, sin(angle)*length);
 }

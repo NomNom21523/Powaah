@@ -29,7 +29,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
-#include __DRIVER_INCLUDE__
+#include "PowaahDriver.h"
 
 /*** defines for UDP *****/
 #define UDP_MSGLEN 1000
@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
            hostInfo->h_addr_list[0], hostInfo->h_length);
     serverAddress.sin_port = htons(serverPort);
 
-    tDriver d;
+    PowaahDriver d;
     strcpy(d.trackName,trackName);
     d.stage = stage;
 

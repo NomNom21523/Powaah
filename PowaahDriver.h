@@ -8,6 +8,7 @@
 #include "CarControl.h"
 #include "SimpleParser.h"
 #include "WrapperBaseDriver.h"
+#include "Driver.h"
 
 #define PI 3.14159265
 
@@ -108,6 +109,8 @@ private:
 
     // Solves the clucthing subproblems
     void clutching(CarState &cs, float &clutch);
+
+    Driver driver;
 };
 
 #endif /*PowaahDriver_H_*/
