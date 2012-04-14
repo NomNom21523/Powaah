@@ -2,6 +2,8 @@
 
 AgentOption::AgentOption()
 {
+    brakeValue = 0.0f;
+    accelerator_value = 0.0f;
 }
 
 AgentOption::~AgentOption()

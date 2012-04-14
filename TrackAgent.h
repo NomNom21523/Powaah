@@ -13,6 +13,7 @@ public:
     void calculatePotentialToAgentOptions(std::vector<AgentOption> &options);
 
 private:
+    float angles[TRACK_SENSORS_NUM];
 };
 
 #endif // TRACKAGENT_H

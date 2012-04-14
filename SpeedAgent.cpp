@@ -25,6 +25,15 @@ SpeedAgent::~SpeedAgent()
 
 void SpeedAgent::update(CarState &carState, const float dt)
 {
+    // add the five front sensors
+    targetSpeed = carState.getTrack(7) + carState.getTrack(8) + carState.getTrack(9) + carState.getTrack(10) + carState.getTrack(11);
+
+    // divide them by five to get roughly calculated target speed
+    targetSpeed /= 5.f;
+
+    // multiply by frame time
+    targetSpeed *= dt;
+
     // find the sensor that has the longest length
     int longestTrackSensor = 0;
     for (int i = 1; i < TRACK_SENSORS_NUM; i++) {
@@ -33,8 +42,8 @@ void SpeedAgent::update(CarState &carState, const float dt)
         }
     }
 
-    // put a charge at the longest sensor position
-    Vector2 position = MathUtility::calculatePosition(MathUtility::convertDegToRad(angles[longestTrackSensor]), carState.getTrack(longestTrackSensor) * 0.0025f);
+    // put a charge at next available position
+    Vector2 position = MathUtility::calculatePosition(MathUtility::convertDegToRad(angles[longestTrackSensor]), targetSpeed);
     Charge charge;
     charge.setPosition(position);
     charge.setCharge(24.0f);
@@ -52,7 +61,7 @@ void SpeedAgent::calculatePotentialToAgentOptions(std::vector<AgentOption> &opti
         Vector2 lengthVector = potentialField.front().getPosition() - option.getPosition();
         float length = lengthVector.length();
         float potentialValue = 60 + (-1*pow(length,2.0f)*potentialField.front().getCharge());
-        option.setPotentialValue(potentialValue);
+        option.setSpeedAgentPotentialValue(potentialValue);
         std::cout << "Option pf: " << option.getPotentialValue() << " angle " << option.getAngle() << " length " << option.getLength() << " charge" << potentialField.front().getCharge() << " length " << length << std::endl;
 
     }

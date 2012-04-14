@@ -3,11 +3,11 @@
 /* Gear Changing Constants*/
 const int PowaahDriver::gearUp[6]=
     {
-        5000,6000,6000,6500,7000,0
+        9500,8500,8500,8500,8600,0
     };
 const int PowaahDriver::gearDown[6]=
     {
-        0,2500,3000,3000,3500,3500
+        0,3000,5300,6000,6300,6300
     };
 
 /* Stuck constants*/
@@ -70,7 +70,7 @@ PowaahDriver::getSteer(CarState &cs)
 {
     // steering angle is compute by correcting the actual car angle w.r.t. to track
     // axis [cs.getAngle()] and to adjust car position w.r.t to middle of track [cs.getTrackPos()*0.5]
-    float targetAngle=(cs.getAngle()-cs.getTrackPos()*0.5);
+    // float targetAngle=(cs.getAngle()-cs.getTrackPos()*0.5);
     // at high speed reduce the steering command to avoid loosing the control
     //if (cs.getSpeedX() > steerSensitivityOffset)
     //    return -1*MathUtility::convertDegToRad(driver.getAgentOption().getAngle())/(steerLock*(cs.getSpeedX()-steerSensitivityOffset)*wheelSensitivityCoeff);
@@ -172,7 +172,7 @@ PowaahDriver::wDrive(CarState cs)
     else // car is not stuck
     {
         // testcode
-        driver.update(cs, 0.1f);
+        driver.update(cs, 0.02f);
         AgentOption option = driver.getAgentOption();
 
         // compute accel/brake command
@@ -200,7 +200,7 @@ PowaahDriver::wDrive(CarState cs)
         {
             accel = 0;
             // apply ABS to brake
-            brake = filterABS(cs,-accel_and_brake);
+            brake = filterABS(cs, option.getBrakeValue());
         }
 
         // Calculate clutching
@@ -208,7 +208,7 @@ PowaahDriver::wDrive(CarState cs)
 
         // build a CarControl variable and return it
         //CarControl cc(accel,brake,gear,steer,clutch);
-        CarControl cc(accel,brake,gear,steer,clutch);
+        CarControl cc(option.getAcceleratorValue(),option.getBrakeValue(),gear,steer,clutch);
         return cc;
     }
 }
