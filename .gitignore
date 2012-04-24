@@ -6,3 +6,8 @@
 
 # client executable file
 client
+
+#visual studio files
+*.sdf
+*Debug/*
+*.vcxproj.filters
