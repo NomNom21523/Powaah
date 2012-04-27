@@ -11,3 +11,9 @@ client
 *.sdf
 *Debug/*
 *.vcxproj.filters
+
+#dSym files
+*dSYM*/*
+
+#orig files
+*.orig
