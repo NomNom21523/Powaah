@@ -25,7 +25,9 @@ SOURCES += \
     PowaahDriver.cpp \
     Charge.cpp \
     TrackPoint.cpp \
-    FileHandler.cpp
+    FileHandler.cpp \
+    File.cpp \
+    TrackDataFile.cpp
 
 HEADERS += \
     Agent.h \
@@ -46,5 +48,7 @@ HEADERS += \
     PowaahDriver.h \
     Charge.h \
     TrackPoint.h \
-    FileHandler.h
+    FileHandler.h \
+    File.h \
+    TrackDataFile.h
 

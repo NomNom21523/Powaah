@@ -24,7 +24,7 @@ struct FileDesc
 
 class FileHandler
 {
-public:
+protected:
         static bool writeBinary(const FileDesc& desc);
 
         static bool readBinary(const FileDesc& desc);
