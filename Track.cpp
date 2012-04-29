@@ -22,6 +22,13 @@ void Track::init()
     }
 }
 
+void Track::update(const CarState &carState, const float dt)
+{
+    if (trackMode == TRACK_MODE_SCAN) {
+
+    }
+}
+
 const TrackPoint Track::getCurrentTrackPoint(const float currentTrackPoint)
 {
     switch(trackMode) {
@@ -39,4 +46,17 @@ const TrackPoint Track::getCurrentTrackPoint(const float currentTrackPoint)
 const TrackMode Track::getTrackMode() const
 {
     return trackMode;
+}
+
+
+// private helper functions
+
+const TrackCurvature Track::getTrackCurvature(CarState &carState)
+{
+    if (carState.getTrack(8) > carState.getTrack(10)) {
+        return TRACK_CURVATURE_LEFT;
+    } else if (carState.getTrack(10) > carState.getTrack(8)) {
+        return TRACK_CURVATURE_RIGHT;
+    }
+    return TRACK_CURVATURE_NONE;
 }
