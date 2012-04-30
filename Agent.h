@@ -6,6 +6,11 @@
 #include "CarState.h"
 #include "Charge.h"
 
+/*!
+ * @file Agent.h
+ * @brief Base class for agents
+ *
+ */
 class Agent
 {
 public:

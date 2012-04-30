@@ -21,6 +21,13 @@ enum TrackCurvature {
 class Track
 {
 public:
+
+    /*!
+     * Creates a singleton object to be used
+     * @return The Track instance that is supposted to be used everywhere
+     */
+    Track *instance(const std::string &trackName);
+
     /*!
      * Constructor, sets track mode
      * @param mode - the track mode

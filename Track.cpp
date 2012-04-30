@@ -1,5 +1,12 @@
 #include "Track.h"
 
+
+Track *Track::instance(const std::string &trackName)
+{
+    static Track track(TRACK_MODE_NORMAL, trackName);
+    return &track;
+}
+
 Track::Track(TrackMode mode, const std::string &trackName)
     : trackMode(mode)
 {

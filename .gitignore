@@ -17,3 +17,7 @@ client
 
 #orig files
 *.orig
+
+#doxygen files
+*html/*
+*latex/*
