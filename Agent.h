@@ -7,8 +7,18 @@
 #include "Charge.h"
 
 /*!
- * @file Agent.h
- * @brief Base class for agents
+ * @class Agent.h
+ * @author Tim Uusitalo
+ * @date 2012-04-30
+ *
+ * @brief Base class for agents.
+ *
+ * Base class for all of the agents. It has an interface defined how an agent should look like.
+ *
+ * An agent shall have an update function and a function that
+ * calculates a potential field for given agent options.
+ * An AgentOption should have one potential value for each agent,
+ * which it sums together to one final potentialvalue.
  *
  */
 class Agent
