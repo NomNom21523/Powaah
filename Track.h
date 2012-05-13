@@ -6,12 +6,6 @@
 
 #include <vector>
 
-enum TrackMode {
-    TRACK_MODE_NONE,
-    TRACK_MODE_SCAN,
-    TRACK_MODE_NORMAL
-};
-
 enum TrackCurvature {
     TRACK_CURVATURE_NONE,
     TRACK_CURVATURE_LEFT,
@@ -23,29 +17,30 @@ class Track
 public:
 
     /*!
-     * Creates a singleton object to be used
-     * @return The Track instance that is supposted to be used everywhere
-     */
-    Track *instance(const std::string &trackName);
-
-    /*!
      * Constructor, sets track mode
      * @param mode - the track mode
      */
-    Track(TrackMode mode, const std::string &trackName);
+    Track(const std::string &trackName);
 
     /*!
      * Destructor
      */
-    ~Track();
+    virtual ~Track();
 
     /*!
-     * inits track in three different ways
-     * 1 - TRACK_MODE_NONE - does nothing
-     * 2 - TRACK_MODE_SCAN - inits the track in a scanning mode
-     * 3 - TRACK_MODE_NORMAL - reads a file containing trackpoints for current track
+     * retrieves closest track point to current track point
+     * @param currentTrackPoint - current track point
+     * @return closest track point
      */
-    void init();
+    const TrackPoint getCurrentTrackPoint(const float currentTrackPoint);
+
+protected:
+    /*!
+     * inits track in two different ways
+     * 2 - if class TrackScanner is used - inits the track in a scanning mode
+     * 3 - if class TrackInfo - reads a file containing trackpoints for current track
+     */
+    virtual void init() = 0;
 
     /*!
      * When scanning track, update() may add new track points.
@@ -62,18 +57,6 @@ public:
      */
     void update(const CarState &carState, const float dt);
 
-    /*!
-     * retrieves closest track point to current track point
-     * @param currentTrackPoint - current track point
-     * @return closest track point
-     */
-    const TrackPoint getCurrentTrackPoint(const float currentTrackPoint);
-
-    /*!
-     * retrieves current track mode
-     * @return current track mode
-     */
-    const TrackMode getTrackMode() const;
 
 private:
     /*!
@@ -85,7 +68,6 @@ private:
 
 private:
     std::vector<TrackPoint> trackPoints;
-    TrackMode trackMode;
     std::string trackName;
 
 };

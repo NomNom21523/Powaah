@@ -27,7 +27,9 @@ SOURCES += \
     TrackPoint.cpp \
     FileHandler.cpp \
     File.cpp \
-    TrackDataFile.cpp
+    TrackDataFile.cpp \
+    TrackScanner.cpp \
+    TrackInfo.cpp
 
 HEADERS += \
     Agent.h \
@@ -50,5 +52,7 @@ HEADERS += \
     TrackPoint.h \
     FileHandler.h \
     File.h \
-    TrackDataFile.h
+    TrackDataFile.h \
+    TrackScanner.h \
+    TrackInfo.h
 

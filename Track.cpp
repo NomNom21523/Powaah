@@ -1,14 +1,6 @@
 #include "Track.h"
 
-
-Track *Track::instance(const std::string &trackName)
-{
-    static Track track(TRACK_MODE_NORMAL, trackName);
-    return &track;
-}
-
-Track::Track(TrackMode mode, const std::string &trackName)
-    : trackMode(mode)
+Track::Track(const std::string &trackName)
 {
     this->trackName = trackName;
 }
@@ -17,42 +9,30 @@ Track::~Track()
 {
 }
 
-void Track::init()
-{
-    switch(trackMode) {
-    case TRACK_MODE_NONE:
-        break;
-    case TRACK_MODE_SCAN:
-        break;
-    case TRACK_MODE_NORMAL:
-        break;
-    }
-}
-
-void Track::update(const CarState &carState, const float dt)
-{
-    if (trackMode == TRACK_MODE_SCAN) {
-
-    }
-}
-
 const TrackPoint Track::getCurrentTrackPoint(const float currentTrackPoint)
 {
-    switch(trackMode) {
-    case TRACK_MODE_NONE:
-        break;
-    case TRACK_MODE_SCAN:
-        break;
-    case TRACK_MODE_NORMAL:
-        break;
-    }
+    if (!trackPoints.empty()) {
+        // set closestTrackPoint to some arbitrary big number
+        float closestTrackPointLength = trackPoints.front().getTrackPosition();
+        unsigned int iterator = 0;
 
+        // searchfor track nodes that are closer to current track point than closestTrackPoint
+        for (unsigned int i = 1; i < trackPoints.size(); i++) {
+            TrackPoint &trackPoint = trackPoints.at(i);
+
+            if (trackPoint.getTrackPosition() < closestTrackPointLength) {
+                iterator = i;
+                closestTrackPointLength = trackPoint.getTrackPosition();
+            }
+        }
+    }
     return TrackPoint();
 }
 
-const TrackMode Track::getTrackMode() const
+// protected virtual functions
+
+void Track::update(const CarState &carState, const float dt)
 {
-    return trackMode;
 }
 
 
