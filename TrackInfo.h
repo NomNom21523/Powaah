@@ -11,6 +11,9 @@ public:
 
     void init();
 
+private:
+    void normalizeCurvatures();
+
 };
 
 #endif // TRACKINFO_H
