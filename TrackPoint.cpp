@@ -18,12 +18,23 @@ const Vector2 TrackPoint::getPosition() const
     return position;
 }
 
-void TrackPoint::setTrackPosition(const float trackPosition)
+void TrackPoint::setTrackCurvature(const TrackPoint::TrackCurvature trackCurvature)
 {
-    this->trackPosition = trackPosition;
+    this->trackCurvature = trackCurvature;
 }
 
-const float TrackPoint::getTrackPosition() const
+const TrackPoint::TrackCurvature TrackPoint::getTrackCurvature() const
 {
-    return trackPosition;
+    return trackCurvature;
 }
+
+void TrackPoint::setCarState(CarState &carState)
+{
+    this->carState = carState;
+}
+
+CarState &TrackPoint::getCarState()
+{
+    return carState;
+}
+

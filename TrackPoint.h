@@ -2,9 +2,16 @@
 #define TRACKPOINT_H
 
 #include "Vector2.h"
+#include "CarState.h"
 
 class TrackPoint
 {
+    enum TrackCurvature {
+        TRACK_CURVATURE_NONE,
+        TRACK_CURVATURE_LEFT,
+        TRACK_CURVATURE_RIGHT
+    };
+
 public:
     TrackPoint();
     ~TrackPoint();
@@ -12,13 +19,17 @@ public:
     void setPosition(const Vector2 &position);
     const Vector2 getPosition() const;
 
-    void setTrackPosition(const float trackPosition);
-    const float getTrackPosition() const;
+    void setTrackCurvature(const TrackCurvature trackCurvature);
+    const TrackCurvature getTrackCurvature() const;
+
+    void setCarState(CarState &carState);
+    CarState &getCarState();
+
 
 private:
     Vector2 position;
-    float trackPosition;
-
+    TrackCurvature trackCurvature;
+    CarState carState;
 };
 
 #endif // TRACKPOINT_H

@@ -13,16 +13,16 @@ const TrackPoint Track::getCurrentTrackPoint(const float currentTrackPoint)
 {
     if (!trackPoints.empty()) {
         // set closestTrackPoint to some arbitrary big number
-        float closestTrackPointLength = trackPoints.front().getTrackPosition();
+        float closestTrackPointLength = trackPoints.front().getCarState().getTrackPos();
         unsigned int iterator = 0;
 
         // searchfor track nodes that are closer to current track point than closestTrackPoint
         for (unsigned int i = 1; i < trackPoints.size(); i++) {
             TrackPoint &trackPoint = trackPoints.at(i);
 
-            if (trackPoint.getTrackPosition() < closestTrackPointLength) {
+            if (trackPoint.getCarState().getTrackPos() < closestTrackPointLength) {
                 iterator = i;
-                closestTrackPointLength = trackPoint.getTrackPosition();
+                closestTrackPointLength = trackPoint.getCarState().getTrackPos();
             }
         }
     }

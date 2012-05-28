@@ -11,8 +11,15 @@ public:
 
     void init();
 
-    void update(const CarState &carState, const float dt);
+    void update(CarState &carState, const float dt);
 
+private:
+    const bool newTrackNode(CarState &carState);
+
+private:
+
+    // Defines the length between each track point in meters.
+    static const float LENGTH_BETWEEN_TRACKPOINTS;
 };
 
 #endif // TRACKSCANNER_H

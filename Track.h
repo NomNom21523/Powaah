@@ -66,7 +66,7 @@ private:
      */
     const TrackCurvature getTrackCurvature(CarState &carState);
 
-private:
+protected:
     std::vector<TrackPoint> trackPoints;
     std::string trackName;
 
