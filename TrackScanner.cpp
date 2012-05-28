@@ -23,6 +23,17 @@ void TrackScanner::update(CarState &carState, const float dt)
         // scan the track and record TrackPoint data
         TrackPoint trackPoint;
         trackPoint.setCarState(carState);
+
+        if (carState.getTrack(9) < MAX_SENSOR_LENGTH) {
+            if (carState.getTrack(8) < carState.getTrack(10)) {
+                trackPoint.setTrackCurvature(TRACK_CURVATURE_RIGHT);
+            }
+            else if (carState.getTrack(8) > carState.getTrack(10)) {
+                trackPoint.setTrackCurvature(TRACK_CURVATURE_RIGHT);
+            }
+        }
+
+        trackPoints.push_back(trackPoint);
     }
 }
 

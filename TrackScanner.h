@@ -20,6 +20,7 @@ private:
 
     // Defines the length between each track point in meters.
     static const float LENGTH_BETWEEN_TRACKPOINTS;
+    static const float MAX_SENSOR_LENGTH = 200.0f;
 };
 
 #endif // TRACKSCANNER_H
