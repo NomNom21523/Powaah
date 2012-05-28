@@ -6,6 +6,7 @@
 
 class TrackPoint
 {
+public:
     enum TrackCurvature {
         TRACK_CURVATURE_NONE,
         TRACK_CURVATURE_LEFT,

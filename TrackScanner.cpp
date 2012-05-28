@@ -26,10 +26,10 @@ void TrackScanner::update(CarState &carState, const float dt)
 
         if (carState.getTrack(9) < MAX_SENSOR_LENGTH) {
             if (carState.getTrack(8) < carState.getTrack(10)) {
-                trackPoint.setTrackCurvature(TRACK_CURVATURE_RIGHT);
+                trackPoint.setTrackCurvature(TrackPoint::TRACK_CURVATURE_RIGHT);
             }
             else if (carState.getTrack(8) > carState.getTrack(10)) {
-                trackPoint.setTrackCurvature(TRACK_CURVATURE_RIGHT);
+                trackPoint.setTrackCurvature(TrackPoint::TRACK_CURVATURE_RIGHT);
             }
         }
 
