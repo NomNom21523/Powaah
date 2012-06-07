@@ -16,6 +16,7 @@ void TrackInfo::init()
 }
 
 // private helper functions
+
 void TrackInfo::normalizeCurvatures()
 {
 
