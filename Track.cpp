@@ -25,6 +25,7 @@ const TrackPoint Track::getCurrentTrackPoint(const float currentTrackPoint)
                 closestTrackPointLength = trackPoint.getCarState().getTrackPos();
             }
         }
+        return trackPoints[iterator];
     }
     return TrackPoint();
 }

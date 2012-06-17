@@ -11,64 +11,64 @@
 
 bool FileHandler::writeBinary(const FileDesc& desc)
 {
-        std::fstream file(desc.file_name.c_str(), std::ios::out | std::ios::binary);
+	std::fstream file(desc.file_name.c_str(), std::ios::out | std::ios::binary);
 
-        // if file exists
-        if (file.is_open())
-        {
-                file.write(desc.data, desc.size*desc.elements);
+	// if file exists
+	if (file.is_open())
+	{
+		file.write(desc.data, desc.size*desc.elements);
 
-                file.close();
+		file.close();
 
-                return true;
-        }
+		return true;
+	}
 
-        return false;
+	return false;
 }
 
 bool FileHandler::readBinary(const FileDesc& desc)
 {
-        std::fstream file(desc.file_name.c_str(), std::ios::in | std::ios::binary);
+	std::fstream file(desc.file_name.c_str(), std::ios::in | std::ios::binary);
 
-        if (file.is_open())
-        {
-                file.read(desc.data, desc.size * desc.elements);
+	if (file.is_open())
+	{
+		file.read(desc.data, desc.size * desc.elements);
 
-                file.close();
+		file.close();
 
-                return true;
-        }
+		return true;
+	}
 
-        return false;
+	return false;
 }
 
 void FileHandler::readPartBinary(std::fstream& f, const FileDesc& desc)
 {
-        f.read(desc.data, desc.size*desc.elements);
+	f.read(desc.data, desc.size*desc.elements);
 }
 
 void FileHandler::writePartBinary(std::fstream& f, const FileDesc& desc)
 {
-        f.write(desc.data, desc.size*desc.elements);
+	f.write(desc.data, desc.size*desc.elements);
 }
 
 int FileHandler::getBinaryFileSize(const std::string& file)
 {
-        std::fstream f(file.c_str(), std::ios::in | std::ios::binary);
+	std::fstream f(file.c_str(), std::ios::in | std::ios::binary);
 
-        if (f.is_open())
-        {
-                f.seekg(0, std::ios::end);
+	if (f.is_open())
+	{
+		f.seekg(0, std::ios::end);
 
-                int size = (int)f.tellg();
+		int size = (int)f.tellg();
 
-                f.seekg(0, std::ios::beg);
+		f.seekg(0, std::ios::beg);
 
-                f.close();
+		f.close();
 
-                return size;
+		return size;
 
-        }
+	}
 
-        return 0;
+	return 0;
 }

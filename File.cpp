@@ -44,18 +44,20 @@ void File::writeDataToFile(const FileDesc &description)
     std::fstream fileStream;
     FileDesc header;
 
-    // insert header first, which is a number of elements
-    // insert before everything else
-    unsigned int elements = description.elements;
+    fileStream.open(description.file_name.c_str(), std::ios::out | std::ios::binary);
 
-    header.size = sizeof(unsigned int);
-    header.data = (char*)&elements;
-    header.elements = 1;
-    // write header
-    FileHandler::writePartBinary(fileStream, header);
+	// insert header first, which is a number of elements
+	// insert before everything else
+	unsigned int elements = description.elements;
 
-    // write the data
-    FileHandler::writePartBinary(fileStream, description);
+	header.size = sizeof(unsigned int);
+	header.data = (char*)&elements;
+	header.elements = 1;
+	// write header
+	FileHandler::writePartBinary(fileStream, header);
 
-    fileStream.close();
+	// write the data
+	FileHandler::writePartBinary(fileStream, description);
+
+	fileStream.close();
 }

@@ -75,7 +75,7 @@ PowaahDriver::getSteer(CarState &cs)
     //if (cs.getSpeedX() > steerSensitivityOffset)
     //    return -1*MathUtility::convertDegToRad(driver.getAgentOption().getAngle())/(steerLock*(cs.getSpeedX()-steerSensitivityOffset)*wheelSensitivityCoeff);
     //else
-        return (-1*MathUtility::convertDegToRad(driver.getAgentOption().getAngle()))/steerLock;
+    return (-1*MathUtility::convertDegToRad(driver.getAgentOption().getAngle()))/steerLock;
 
 }
 float
@@ -176,7 +176,7 @@ PowaahDriver::wDrive(CarState cs)
         AgentOption option = driver.getAgentOption();
 
         // compute accel/brake command
-        float accel_and_brake = getAccel(cs);
+
         // compute gear
         int gear = getGear(cs);
         // compute steering
@@ -189,26 +189,12 @@ PowaahDriver::wDrive(CarState cs)
         if (steer > 1)
             steer = 1;
 
-        // set accel and brake from the joint accel/brake command
-        float accel,brake;
-        if (accel_and_brake>0)
-        {
-            accel = accel_and_brake;
-            brake = 0;
-        }
-        else
-        {
-            accel = 0;
-            // apply ABS to brake
-            brake = filterABS(cs, option.getBrakeValue());
-        }
-
         // Calculate clutching
         clutching(cs,clutch);
 
         // build a CarControl variable and return it
         //CarControl cc(accel,brake,gear,steer,clutch);
-        CarControl cc(option.getAcceleratorValue(),option.getBrakeValue(),gear,steer,clutch);
+        CarControl cc(option.getAcceleratorValue(), filterABS(cs, option.getBrakeValue()),gear,steer,clutch);
         return cc;
     }
 }

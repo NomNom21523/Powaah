@@ -8,8 +8,8 @@
 class TrackDataFile : public File
 {
 public:
-    bool readTrackPointsFromFile(std::vector<TrackPoint> &trackData, std::string &trackname);
-    bool writeTrackPointsToFile(std::vector<TrackPoint> &trackData, std::string &trackname);
+    static bool readTrackPointsFromFile(std::vector<TrackPoint> &trackData, std::string &trackname);
+    static bool writeTrackPointsToFile(std::vector<TrackPoint> &trackData, std::string &trackname);
 };
 
 #endif // TRACKDATAFILE_H

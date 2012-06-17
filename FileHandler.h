@@ -15,25 +15,25 @@
 
 struct FileDesc
 {
-        std::string file_name;
-        int size;
-        int elements;
-        char* data;
+	std::string file_name;
+	int size;
+	int elements;
+	char* data;
 };
 
 
 class FileHandler
 {
 protected:
-        static bool writeBinary(const FileDesc& desc);
+	static bool writeBinary(const FileDesc& desc);
 
-        static bool readBinary(const FileDesc& desc);
+	static bool readBinary(const FileDesc& desc);
 
-        static void readPartBinary(std::fstream& f, const FileDesc& desc);
+	static void readPartBinary(std::fstream& f, const FileDesc& desc);
 
-        static void writePartBinary(std::fstream& f, const FileDesc& desc);
+	static void writePartBinary(std::fstream& f, const FileDesc& desc);
 
-        static int getBinaryFileSize(const std::string& file);
+	static int getBinaryFileSize(const std::string& file);
 };
 
 #endif

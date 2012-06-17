@@ -3,7 +3,8 @@
 bool TrackDataFile::readTrackPointsFromFile(std::vector<TrackPoint> &trackData, std::string &trackname)
 {
     FileDesc description;
-    description.file_name = trackname + ".trk";
+    description.file_name += trackname;
+    description.file_name += ".trk";
     description.elements = File::fetchElementSizeFromFile(description);
     description.size = sizeof(TrackPoint);
 
@@ -19,7 +20,8 @@ bool TrackDataFile::writeTrackPointsToFile(std::vector<TrackPoint> &trackData, s
 {
     if (!trackData.empty()) {
         FileDesc description;
-        description.file_name = trackname + ".trk";
+        description.file_name += trackname;
+        description.file_name += ".trk";
         description.elements = trackData.size();
         description.size = sizeof(TrackPoint);
         description.data = (char*)&trackData.front();
