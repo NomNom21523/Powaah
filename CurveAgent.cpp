@@ -45,19 +45,21 @@ void CurveAgent::update(CarState &carState, const float dt)
         float distanceToCurvature = carState.getTrack(9);
         // std::cout << "distance to curvature: " << distanceToCurvature << std::endl;
 
-        if (distanceToCurvature < distanceToCurvatureReaction) {
+        if (distanceToCurvature < 200.0f) {
             if (trackPoint.getTrackCurvature() == TrackPoint::TRACK_CURVATURE_LEFT) {
                 Charge charge;
-                Vector2 pos(MathUtility::convertKilometerPerHourToMeterPerSecond(carState.getSpeedX()) * dt, right);
+                Vector2 pos(speed, right);
                 charge.setAngle(pos.angle());
-                charge.setCharge(0.0212f * MathUtility::convertKilometerPerHourToMeterPerSecond(carState.getSpeedX()) * 10 * calculateKValue(distanceToCurvature));
+                charge.setCharge(0.212f * (speed/dt)*10*calculateKValue(distanceToCurvature));
                 potentialField.push_back(charge);
+                std::cout << "Curve go left" << std::endl;
             } else if (trackPoint.getTrackCurvature() == TrackPoint::TRACK_CURVATURE_RIGHT) {
                 Charge charge;
-                Vector2 pos(MathUtility::convertKilometerPerHourToMeterPerSecond(carState.getSpeedX()) * dt, -1*left);
+                Vector2 pos(speed, -1*left);
                 charge.setAngle(pos.angle());
-                charge.setCharge(0.0212f * MathUtility::convertKilometerPerHourToMeterPerSecond(carState.getSpeedX()) * 10 * calculateKValue(distanceToCurvature));
+                charge.setCharge(0.212f * (speed/dt)*10*calculateKValue(distanceToCurvature));
                 potentialField.push_back(charge);
+                std::cout << "Curve go right" << std::endl;
             }
         }
     } else if (stage == BaseDriver::WARMUP) {
@@ -79,11 +81,10 @@ void CurveAgent::calculatePotentialToAgentOptions(std::vector<AgentOption> &opti
             float length = (charge.getPosition() - agentOption.getPosition()).length();
             float width = left + right;
             float chargeValue = charge.getCharge();
-            float potential = (1-(length/width));
+            float potential = (length/width);
             if (potential < 0.0f) {
                 potential = 0.0f;
             }
-            std::cout << "potential: " << potential << " chargeValue: " << chargeValue << " together: " << potential * chargeValue << " left: " << left << " right: " << right << std::endl;
             agentOption.setCurveAgentPotentialValue(potential * chargeValue);
         }
     }
@@ -100,6 +101,16 @@ void CurveAgent::setStage(const BaseDriver::tstage stage)
 const bool CurveAgent::isScanning() const
 {
     return scanning;
+}
+
+void CurveAgent::setSpeed(const float speed)
+{
+    this->speed = speed;
+}
+
+const float CurveAgent::getSpeed() const
+{
+    return speed;
 }
 
 const float CurveAgent::calculateKValue(const float lengthToCurvature)

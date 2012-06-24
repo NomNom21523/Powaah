@@ -95,11 +95,12 @@ void Driver::update(CarState &carState, const float dt)
     trackAgent.update(carState, dt);
     trackAgent.calculatePotentialToAgentOptions(agentOptions);
 
+    curveAgent.setSpeed(targetSpeed);
     curveAgent.update(carState, dt);
     curveAgent.calculatePotentialToAgentOptions(agentOptions);
 
     for (unsigned int i = 0; i < agentOptions.size(); i++) {
-        float potentialValue = 0.0f;//agentOptions[i].getCurveAgentPotentialValue();
+        float potentialValue = 0.0f;
         potentialValue += agentOptions[i].getSpeedAgentPotentialValue();
         potentialValue += agentOptions[i].getTrackAgentPotentialValue();
         potentialValue += agentOptions[i].getCurveAgentPotentialValue();

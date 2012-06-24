@@ -19,6 +19,9 @@ public:
 
     const bool isScanning() const;
 
+    void setSpeed(const float speed);
+    const float getSpeed() const;
+
 private:
     const float calculateKValue(const float lengthToCurvature);
 private:
@@ -29,6 +32,7 @@ private:
     float right;
     BaseDriver::tstage stage;
     bool scanning;
+    float speed;
 };
 
 #endif // CURVEAGENT_H

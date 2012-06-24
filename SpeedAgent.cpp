@@ -43,7 +43,7 @@ void SpeedAgent::update(CarState &carState, const float dt)
     Charge charge;
     charge.setPosition(position);
     charge.setCharge(24.0f);
-    charge.setAngle(position.angle());
+    charge.setAngle(MathUtility::convertRadToDeg(position.angle()));
     potentialField.clear();
     potentialField.push_back(charge);
 
@@ -57,8 +57,6 @@ void SpeedAgent::calculatePotentialToAgentOptions(std::vector<AgentOption> &opti
         float length = lengthVector.length();
         float potentialValue = 60 + (-1*pow(length,2.0f)*potentialField.front().getCharge());
         option.setSpeedAgentPotentialValue(potentialValue);
-        // std::cout << "Option pf: " << option.getPotentialValue() << " angle " << option.getAngle() << " length " << option.getLength() << " charge" << potentialField.front().getCharge() << " length " << length << std::endl;
-
     }
 }
 

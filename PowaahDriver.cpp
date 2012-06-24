@@ -74,7 +74,7 @@ PowaahDriver::getSteer(CarState &cs)
     //if (cs.getSpeedX() > steerSensitivityOffset)
     //    return -1*MathUtility::convertDegToRad(driver.getAgentOption().getAngle())/(steerLock*(cs.getSpeedX()-steerSensitivityOffset)*wheelSensitivityCoeff);
     //else
-    return (-1*MathUtility::convertDegToRad(driver.getAgentOption().getAngle()))/steerLock;
+    return -1*((MathUtility::convertDegToRad(driver.getAgentOption().getAngle()))/steerLock);
 
 }
 float
