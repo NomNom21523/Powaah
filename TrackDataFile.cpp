@@ -8,8 +8,11 @@ bool TrackDataFile::readTrackPointsFromFile(std::vector<TrackPoint> &trackData, 
     description.elements = File::fetchElementSizeFromFile(description);
     description.size = sizeof(TrackPoint);
 
+    trackData.resize(description.elements);
+    trackData.reserve(description.elements);
+
+    description.data = (char*)&trackData.front();
     if (description.elements > 0) {
-        trackData.resize(description.elements);
         File::readDataFromFile(description);
         return true;
     }

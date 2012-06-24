@@ -25,15 +25,6 @@ SpeedAgent::~SpeedAgent()
 
 void SpeedAgent::update(CarState &carState, const float dt)
 {
-    // add the five front sensors
-    targetSpeed = carState.getTrack(7) + carState.getTrack(8) + carState.getTrack(9) + carState.getTrack(10) + carState.getTrack(11);
-
-    // divide them by five to get roughly calculated target speed
-    targetSpeed /= 5.f;
-
-    // multiply by frame time
-    targetSpeed *= dt;
-
     // find the sensor that has the longest length
     int longestTrackSensor = 0;
     for (int i = 1; i < TRACK_SENSORS_NUM; i++) {
@@ -43,12 +34,16 @@ void SpeedAgent::update(CarState &carState, const float dt)
     }
 
     // put a charge at next available position
-    Vector2 position = MathUtility::calculatePosition(MathUtility::convertDegToRad(angles[longestTrackSensor]), targetSpeed);
+    Vector2 position(0,0);
+    if (stage != BaseDriver::WARMUP) {
+        position = MathUtility::calculatePosition(MathUtility::convertDegToRad(angles[longestTrackSensor]), targetSpeed);
+    } else if (stage == BaseDriver::WARMUP && carState.getLastLapTime() <= 0) {
+        position = MathUtility::calculatePosition(-1*(2 * carState.getAngle() - (carState.getTrackPos()*0.5f)), targetSpeed);
+    }
     Charge charge;
     charge.setPosition(position);
     charge.setCharge(24.0f);
-    charge.setAngle(angles[longestTrackSensor]);
-
+    charge.setAngle(position.angle());
     potentialField.clear();
     potentialField.push_back(charge);
 
@@ -75,4 +70,9 @@ void SpeedAgent::setTargetSpeed(const float targetSpeed)
 const float SpeedAgent::getTargetSpeed() const
 {
     return targetSpeed;
+}
+
+void SpeedAgent::setStage(BaseDriver::tstage stage)
+{
+    this->stage = stage;
 }

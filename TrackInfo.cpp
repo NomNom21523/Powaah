@@ -15,6 +15,7 @@ void TrackInfo::init()
 {
 	// fetch track nodes from saved track file
 	TrackDataFile::readTrackPointsFromFile(trackPoints, trackName);
+    normalizeCurvatures();
 
 }
 
@@ -39,13 +40,13 @@ void TrackInfo::normalizeCurvatures()
             float left = 0, right = 0;
 
             if (carState.getTrack(18) > 0) {
-                right = (cosf(carState.getAngle() * carState.getTrack(18)));
+                right = (cosf(carState.getAngle()) * carState.getTrack(18));
             } else if(carState.getTrack(18) <= 0) {
                 right = 0;
             }
 
             if (carState.getTrack(0) > 0) {
-                left = (cosf(-carState.getAngle() * carState.getTrack(0)));
+                left = (cosf(-carState.getAngle()) * carState.getTrack(0));
             } else if (carState.getTrack(0) <= 0) {
                 left = 0;
             }

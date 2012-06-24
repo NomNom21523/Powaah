@@ -41,7 +41,6 @@ const float PowaahDriver::clutchDec=0.01;
 const float PowaahDriver::clutchMaxModifier=1.3;
 const float PowaahDriver::clutchMaxTime=1.5;
 
-
 int
 PowaahDriver::getGear(CarState &cs)
 {
@@ -296,4 +295,5 @@ PowaahDriver::init(float *angles)
             angles[18-i]=20-(i-5)*5;
     }
     angles[9]=0;
+    driver.setStage(stage);
 }

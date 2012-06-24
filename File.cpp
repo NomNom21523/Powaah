@@ -1,5 +1,7 @@
 #include "File.h"
 
+#include <iostream>
+
 unsigned int File::fetchElementSizeFromFile(const FileDesc &description)
 {
     std::fstream dataStream(description.file_name.c_str(), std::ios::in | std::ios::binary);
@@ -16,7 +18,8 @@ unsigned int File::fetchElementSizeFromFile(const FileDesc &description)
         header.size = sizeof(unsigned int);
         FileHandler::readPartBinary(dataStream, header);
         dataStream.close();
-        return header.elements;
+        std::cout << "Elements: " << elements << std::endl;
+        return elements;
     }
     return 0;
 }
@@ -34,8 +37,12 @@ void File::readDataFromFile(const FileDesc &description)
         // read header
         FileHandler::readPartBinary(dataStream, header);
 
-        // read rest of the file
-        FileHandler::readPartBinary(dataStream, description);
+        if (elements > 0) {
+            std::cout << "Elements: " << elements << std::endl;
+            std::cout << "Pointer: " << description.data << " elements: " << description.elements << " size: " << description.size << " filename: " << description.file_name << std::endl;
+            // read rest of the file
+            FileHandler::readPartBinary(dataStream, description);
+        }
     }
 }
 

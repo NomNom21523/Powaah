@@ -40,6 +40,7 @@ Driver::Driver()
             agentOptions.push_back(option);
         }
     }
+
 }
 
 Driver::~Driver()
@@ -74,6 +75,20 @@ void Driver::update(CarState &carState, const float dt)
         agentOptions[i].setPosition(MathUtility::calculatePosition(MathUtility::convertDegToRad(agentOptions[i].getAngle()), agentOptions[i].getLength()));
     }
 
+    // add the five front sensors
+    float targetSpeed = carState.getTrack(7) + carState.getTrack(8) + carState.getTrack(9) + carState.getTrack(10) + carState.getTrack(11);
+
+    // divide them by five to get roughly calculated target speed
+    targetSpeed /= 5.f;
+
+    if (stage == BaseDriver::WARMUP) {
+        targetSpeed = 8.33333333;
+    }
+
+    // multiply by frame time
+    targetSpeed *= dt;
+
+    speedAgent.setTargetSpeed(targetSpeed);
     speedAgent.update(carState, dt);
     speedAgent.calculatePotentialToAgentOptions(agentOptions);
 
@@ -101,4 +116,11 @@ const AgentOption Driver::getAgentOption() {
         }
     }
     return option;
+}
+
+void Driver::setStage(BaseDriver::tstage stage)
+{
+    this->stage = stage;
+    curveAgent.setStage(stage);
+    speedAgent.setStage(stage);
 }

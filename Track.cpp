@@ -13,16 +13,16 @@ const TrackPoint Track::getCurrentTrackPoint(const float currentTrackPoint)
 {
     if (!trackPoints.empty()) {
         // set closestTrackPoint to some arbitrary big number
-        float closestTrackPointLength = trackPoints.front().getCarState().getTrackPos();
+        float closestTrackPointLength = fabs(trackPoints.front().getCarState().getDistFromStart() - currentTrackPoint);
         unsigned int iterator = 0;
 
         // searchfor track nodes that are closer to current track point than closestTrackPoint
         for (unsigned int i = 1; i < trackPoints.size(); i++) {
             TrackPoint &trackPoint = trackPoints.at(i);
 
-            if (trackPoint.getCarState().getTrackPos() < closestTrackPointLength) {
+            if (fabs(trackPoint.getCarState().getDistFromStart() - currentTrackPoint) < closestTrackPointLength) {
                 iterator = i;
-                closestTrackPointLength = trackPoint.getCarState().getTrackPos();
+                closestTrackPointLength = fabs(trackPoint.getCarState().getDistFromStart() - currentTrackPoint);
             }
         }
         return trackPoints[iterator];
@@ -34,17 +34,18 @@ const TrackPoint Track::getClosestCurvatureTrackPoint(const float currentTrackPo
 {
     if (!trackPoints.empty()) {
         // set closestTrackPoint to some arbitrary big number
-        float closestTrackPointLength = trackPoints.front().getCarState().getTrackPos();
+        float closestTrackPointLength = fabs(trackPoints.front().getCarState().getDistFromStart() - currentTrackPos);
         unsigned int iterator = 0;
 
         // searchfor track nodes that are closer to current track point than closestTrackPoint
         for (unsigned int i = 1; i < trackPoints.size(); i++) {
             TrackPoint &trackPoint = trackPoints.at(i);
 
-            if (trackPoint.getCarState().getTrackPos() < closestTrackPointLength
-                    && trackPoint.getTrackCurvature() != TrackPoint::TRACK_CURVATURE_NONE) {
+            float distanceToTrackPoint = trackPoint.getCarState().getDistFromStart() - currentTrackPos;
+            if ( distanceToTrackPoint < closestTrackPointLength && distanceToTrackPoint > 0
+                     && trackPoint.getTrackCurvature() != TrackPoint::TRACK_CURVATURE_NONE) {
                 iterator = i;
-                closestTrackPointLength = trackPoint.getCarState().getTrackPos();
+                closestTrackPointLength = fabs(trackPoint.getCarState().getDistFromStart() - currentTrackPos);
             }
         }
         return trackPoints[iterator];

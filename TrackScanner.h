@@ -17,6 +17,11 @@ public:
     void writeTrackNodesToFile();
 
     const bool getDataWritten() const;
+
+    const CarState getLastRecordedCarState();
+
+    const bool isTrackPointsEmpty();
+
 private:
     const bool newTrackNode(CarState &carState);
 

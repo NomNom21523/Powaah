@@ -49,6 +49,16 @@ const bool TrackScanner::getDataWritten() const
 	return dataWritten;
 }
 
+const CarState TrackScanner::getLastRecordedCarState()
+{
+    return trackPoints.back().getCarState();
+}
+
+const bool TrackScanner::isTrackPointsEmpty()
+{
+    return trackPoints.empty();
+}
+
 // private helper functions below
 
 const bool TrackScanner::newTrackNode(CarState &carState)

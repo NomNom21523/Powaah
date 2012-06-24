@@ -6,6 +6,7 @@
 #include "TrackAgent.h"
 #include "SpeedAgent.h"
 #include "CarState.h"
+#include "BaseDriver.h"
 
 class Driver
 {
@@ -33,6 +34,9 @@ public:
      */
     const AgentOption getAgentOption();
 
+    void setStage(BaseDriver::tstage stage);
+
+
 private:
     std::vector<AgentOption> agentOptions;
     CurveAgent curveAgent;
@@ -42,7 +46,7 @@ private:
 
     float acceleration[6];
     float decceleration;
-
+    BaseDriver::tstage stage;
 };
 
 #endif // DRIVERAGENT_H
