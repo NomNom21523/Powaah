@@ -97,6 +97,15 @@ namespace MathUtility
      * @return - Returns calculated position
      */
     const Vector2 calculatePosition(const float angle, const float length);
+
+    /*!
+     * \brief convertKilometerPerHourToMeterPerSecond
+     *
+     * Converts a velocity from kilometer per hour to meter per second
+     * \param velocityInKilometerPerSecond incoming velocity en kilometer per hour
+     * \return converted velocity in meter per second
+     */
+    const float convertKilometerPerHourToMeterPerSecond(const float velocityInKilometerPerHour);
 };
 
 

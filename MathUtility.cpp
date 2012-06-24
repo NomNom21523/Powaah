@@ -26,56 +26,61 @@ extern const float MathUtility::RAD_TO_DEG = 180.0f / MathUtility::pi;
 
 const float MathUtility::convertDegToRad(const float angle)
 {
-        return angle * DEG_TO_RAD;
+    return angle * DEG_TO_RAD;
 }
 
 const float MathUtility::convertRadToDeg(const float angle)
 {
-        return angle * RAD_TO_DEG;
+    return angle * RAD_TO_DEG;
 }
 
 const float MathUtility::cosineLawGetC(const float a, const float b, const float alpha)
 {
-        float c = pow(a,2) + pow(b,2);
+    float c = pow(a,2) + pow(b,2);
 
-        c -= 2 * a * b * cos(alpha);
+    c -= 2 * a * b * cos(alpha);
 
-        c = sqrt(c);
+    c = sqrt(c);
 
-        return c;
+    return c;
 }
 
 const float MathUtility::cosineLawGetCSquared(const float a, const float b, const float alpha)
 {
-        float c_squared = pow(a,2) + pow(b,2);
+    float c_squared = pow(a,2) + pow(b,2);
 
-        c_squared -= 2 * a * b * cos(alpha);
+    c_squared -= 2 * a * b * cos(alpha);
 
-        return c_squared;
+    return c_squared;
 
 }
 
 const float MathUtility::lerp(const float a, const float b, const float t)
 {
-        return ((1-t)*a) + (t*b);
+     return ((1-t)*a) + (t*b);
 }
 
 const float MathUtility::slerp(const float a, const float b, const float alpha, const float t)
 {
-        return ((sin((1-t)*alpha)/sin(alpha)) * a) + (((sin(t*alpha))/sin(alpha))*b);
+    return ((sin((1-t)*alpha)/sin(alpha)) * a) + (((sin(t*alpha))/sin(alpha))*b);
 }
 
 const float MathUtility::potential(const float charge, const float length)
 {
-        return charge / powf(length,2);
+    return charge / powf(length,2);
 }
 
 const float MathUtility::potentialSquareRoot(const float charge, const float length)
 {
-        return charge / sqrtf(length);
+    return charge / sqrtf(length);
 }
 
 const Vector2 MathUtility::calculatePosition(const float angle, const float length)
 {
-        return Vector2(cos(angle) * length, sin(angle)*length);
+    return Vector2(cos(angle) * length, sin(angle)*length);
+}
+
+const float MathUtility::convertKilometerPerHourToMeterPerSecond(const float velocityInKilometerPerHour)
+{
+    return velocityInKilometerPerHour * VEL_KM_TO_M;
 }

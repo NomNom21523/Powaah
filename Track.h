@@ -6,12 +6,6 @@
 
 #include <vector>
 
-enum TrackCurvature {
-    TRACK_CURVATURE_NONE,
-    TRACK_CURVATURE_LEFT,
-    TRACK_CURVATURE_RIGHT
-};
-
 class Track
 {
 public:
@@ -33,6 +27,14 @@ public:
      * @return closest track point
      */
     const TrackPoint getCurrentTrackPoint(const float currentTrackPoint);
+
+    /*!
+     * \brief getClosestCurvatureTrackPoint
+     * retrieves the closest trackpoint that is a TRACK_CURVATURE_LEFT or TRACK_CURVATURE_RIGHT
+     * \param currentTrackPos current track position from start
+     * \return the closest trackpoint that is a TRACK_CURVATURE_LEFT or TRACK_CURVATURE_RIGHT
+     */
+    const TrackPoint getClosestCurvatureTrackPoint(const float currentTrackPos);
 
 protected:
     /*!
@@ -64,7 +66,7 @@ private:
      * @param carState Current car state
      * @return Curren track curvature for given car state.
      */
-    const TrackCurvature getTrackCurvature(CarState &carState);
+    const TrackPoint::TrackCurvature getTrackCurvature(CarState &carState);
 
 protected:
     std::vector<TrackPoint> trackPoints;

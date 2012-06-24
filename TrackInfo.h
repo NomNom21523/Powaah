@@ -15,9 +15,14 @@ public:
      */
     void init();
 
+    const float getTrackWidth() const;
+    void setTrackWidth(const float width);
+
 private:
 
     /*!
+     * @todo implementation
+     *
      * Normalizes curvatures
      *
      * I.e., in race mode, the track sensors have fuzzy readings. It may result in that a
@@ -29,6 +34,9 @@ private:
      * has time to correct it.
      */
     void normalizeCurvatures();
+
+private:
+    float trackWidth;
 
 };
 

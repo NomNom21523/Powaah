@@ -2,7 +2,7 @@
 #define CURVEAGENT_H
 
 #include "Agent.h"
-#include "TrackScanner.h"
+#include "TrackInfo.h"
 
 class CurveAgent : public Agent
 {
@@ -14,7 +14,12 @@ public:
     void calculatePotentialToAgentOptions(std::vector<AgentOption> &options);
 
 private:
-    TrackScanner trackScanner;
+    const float calculateKValue(const float lengthToCurvature);
+private:
+    TrackInfo trackInfo;
+    static const float distanceToCurvatureReaction;
+    float left;
+    float right;
 };
 
 #endif // CURVEAGENT_H
