@@ -82,7 +82,7 @@ void Driver::update(CarState &carState, const float dt)
     targetSpeed /= 5.f;
 
     if (stage == BaseDriver::WARMUP) {
-        targetSpeed = 8.33333333;
+        targetSpeed = 9.5;
     }
 
     // multiply by frame time
@@ -99,11 +99,15 @@ void Driver::update(CarState &carState, const float dt)
     curveAgent.update(carState, dt);
     curveAgent.calculatePotentialToAgentOptions(agentOptions);
 
+    overtakeAgent.update(carState, dt);
+    overtakeAgent.calculatePotentialToAgentOptions(agentOptions);
+
     for (unsigned int i = 0; i < agentOptions.size(); i++) {
         float potentialValue = 0.0f;
         potentialValue += agentOptions[i].getSpeedAgentPotentialValue();
         potentialValue += agentOptions[i].getTrackAgentPotentialValue();
         potentialValue += agentOptions[i].getCurveAgentPotentialValue();
+        potentialValue += agentOptions[i].getOvertakeAgentPotentialValue();
         agentOptions[i].setPotentialValue(potentialValue);
     }
 }

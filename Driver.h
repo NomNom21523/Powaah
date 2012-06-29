@@ -5,6 +5,7 @@
 #include "CurveAgent.h"
 #include "TrackAgent.h"
 #include "SpeedAgent.h"
+#include "OvertakeAgent.h"
 #include "CarState.h"
 #include "BaseDriver.h"
 
@@ -39,9 +40,10 @@ public:
 
 private:
     std::vector<AgentOption> agentOptions;
-    CurveAgent curveAgent;
-    TrackAgent trackAgent;
-    SpeedAgent speedAgent;
+    CurveAgent      curveAgent;
+    TrackAgent      trackAgent;
+    SpeedAgent      speedAgent;
+    OvertakeAgent   overtakeAgent;
 
 
     float acceleration[6];

@@ -29,7 +29,8 @@ SOURCES += \
     File.cpp \
     TrackDataFile.cpp \
     TrackScanner.cpp \
-    TrackInfo.cpp
+    TrackInfo.cpp \
+    OvertakeAgent.cpp
 
 HEADERS += \
     Agent.h \
@@ -54,5 +55,6 @@ HEADERS += \
     File.h \
     TrackDataFile.h \
     TrackScanner.h \
-    TrackInfo.h
+    TrackInfo.h \
+    OvertakeAgent.h
 

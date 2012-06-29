@@ -100,3 +100,13 @@ const float AgentOption::getTrackAgentPotentialValue() const
 {
     return this->trackAgentPotentialValue;
 }
+
+void AgentOption::setOvertakeAgentPotentialValue(const float overtakeAgentPotentialValue)
+{
+    this->overtakeAgentPotentialValue = overtakeAgentPotentialValue;
+}
+
+const float AgentOption::getOvertakeAgentPotentialValue() const
+{
+    return overtakeAgentPotentialValue;
+}

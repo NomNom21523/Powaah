@@ -148,6 +148,20 @@ public:
      * @return The current potential value for track agent
      */
     const float getTrackAgentPotentialValue() const;
+
+    /*!
+     * \brief setOvertakeAgentPotentialValue
+     * Sets the potential value for overtake agent
+     * \param overtakeAgentPotentialValue The new potential value for overtake agent
+     */
+    void setOvertakeAgentPotentialValue(const float overtakeAgentPotentialValue);
+
+    /*!
+     * \brief getOvertakeAgentPotentialValue
+     * Retrieves the potential value for overtake agent
+     * \return  The potential value for overtake agent
+     */
+    const float getOvertakeAgentPotentialValue() const;
 private:
     float length;
     float angle;
@@ -158,6 +172,7 @@ private:
     float curveAgentPotentialValue;
     float speedAgentPotentialValue;
     float trackAgentPotentialValue;
+    float overtakeAgentPotentialValue;
 
     int counter;
 };

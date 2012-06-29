@@ -50,14 +50,14 @@ void CurveAgent::update(CarState &carState, const float dt)
                 Charge charge;
                 Vector2 pos(speed, right);
                 charge.setAngle(pos.angle());
-                charge.setCharge(0.212f * (speed/dt)*10*calculateKValue(distanceToCurvature));
+                charge.setCharge(0.212f * (speed)*10*calculateKValue(distanceToCurvature));
                 potentialField.push_back(charge);
                 std::cout << "Curve go left" << std::endl;
             } else if (trackPoint.getTrackCurvature() == TrackPoint::TRACK_CURVATURE_RIGHT) {
                 Charge charge;
                 Vector2 pos(speed, -1*left);
                 charge.setAngle(pos.angle());
-                charge.setCharge(0.212f * (speed/dt)*10*calculateKValue(distanceToCurvature));
+                charge.setCharge(0.212f * (speed)*10*calculateKValue(distanceToCurvature));
                 potentialField.push_back(charge);
                 std::cout << "Curve go right" << std::endl;
             }
